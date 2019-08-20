@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-export default function Login({ login }) {
+import { Button, Input } from "semantic-ui-react";
+
+export default function Login({ login, logout }) {
   const [formData, setFormData] = useState({
     username: "",
     password: ""
@@ -13,7 +15,7 @@ export default function Login({ login }) {
     });
   };
 
-  const LoginToAxios = e => {
+  const loginToAxios = e => {
     e.preventDefault();
     login(formData);
     setFormData({
@@ -22,25 +24,31 @@ export default function Login({ login }) {
     });
   };
   return (
-    <div>
+    <div className="formContainer">
       <h2>Login</h2>
-      <form onSubmit={e => LoginToAxios(e)}>
-        <input
+      <form onSubmit={e => loginToAxios(e)}>
+        <Input
+          className="input"
+          focus
+          placeholder="Enter Username"
           type="text"
           name="username"
-          placeholder="Enter Username"
           value={formData.username}
           onChange={changeHandler}
         />
-        <input
+        <Input
+          focus
+          placeholder="Enter Password"
           type="password"
           name="password"
-          placeholder="Enter password"
           value={formData.password}
           onChange={changeHandler}
         />
-        <button>Submit</button>
+        <Button primary className="button">
+          Submit
+        </Button>
       </form>
+      <Button onClick={() => logout()}>Logout</Button>
     </div>
   );
 }

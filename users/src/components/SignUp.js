@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { Button, Input } from "semantic-ui-react";
+
 export default function SignUp({ addUser }) {
   const [formData, setFormData] = useState({
     username: "",
@@ -22,24 +24,29 @@ export default function SignUp({ addUser }) {
     });
   };
   return (
-    <div>
+    <div className="formContainer">
       <h2>Sign Up</h2>
       <form onSubmit={e => addUserToAxios(e)}>
-        <input
+        <Input
+          className="input"
+          focus
+          placeholder="Enter Username"
           type="text"
           name="username"
-          placeholder="Enter Username"
           value={formData.username}
           onChange={changeHandler}
         />
-        <input
+        <Input
+          focus
+          placeholder="Enter password"
           type="password"
           name="password"
-          placeholder="Enter password"
           value={formData.password}
           onChange={changeHandler}
         />
-        <button>Submit</button>
+        <Button primary className="button">
+          Submit
+        </Button>
       </form>
     </div>
   );

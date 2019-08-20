@@ -8,6 +8,12 @@ const router = express.Router();
 router.get("/", (req, res) => {
   res.status(200).json({ session: req.session });
 });
+
+/**
+ * @api {get} /user Request User Information
+ * @apitName Get Users
+ * @apiGroup User
+ */
 router.get("/users", restricted, (req, res) => {
   Routes.getUsers()
     .then(users => {
@@ -43,7 +49,6 @@ router.post("/login", (req, res) => {
   Routes.findUser({ username })
     .first()
     .then(user => {
-      console.log(user);
       if (user && bcrypt.compareSync(password, user.password)) {
         req.session.username = user.username;
         res.status(200).json({ message: `${user.username} is logged in` });
@@ -58,7 +63,7 @@ router.post("/login", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.session.destroy(() => {
-    res.status(200).json({ messagee: "Please bro" });
+    res.status(200).json({ messagee: "Peace bro" });
   });
 });
 

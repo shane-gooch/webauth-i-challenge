@@ -10,6 +10,7 @@
   "keywords": [],
   "author": "Lambda School",
   "dependencies": {
+    "apidoc": "^0.17.7",
     "bcryptjs": "^2.4.3",
     "connect-session-knex": "^1.4.0",
     "cors": "^2.8.5",

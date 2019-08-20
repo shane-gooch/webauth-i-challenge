@@ -31,24 +31,33 @@ function App() {
       });
   };
 
-  useEffect(() => {
-    const getUsers = () => {
-      axiosWithAuth()
-        .get("http://localhost:5000/api/users")
-        .then(res => {
-          setUsers(res.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    };
-    getUsers();
-  }, []);
+  const getUsers = () => {
+    axios
+      .get("http://localhost:5000/api/users")
+      .then(res => {
+        setUsers(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const logout = () => {
+    axios
+      .get("http://localhost:5000/api/logout")
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="App">
-      <Login login={login} />
+      <Login login={login} logout={logout} />
       <SignUp addUser={addUser} />
-      <Users users={users} />
+      <Users users={users} getUsers={getUsers} />
     </div>
   );
 }

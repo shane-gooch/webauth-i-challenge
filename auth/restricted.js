@@ -4,7 +4,7 @@ const Routes = require("../routes/route-model.js");
 
 module.exports = function restricted(req, res, next) {
   // let { username, password } = req.headers;
-
+  console.log(req.session.username);
   if (req && req.session && req.session.username) {
     next();
   } else {
